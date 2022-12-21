@@ -3,14 +3,14 @@ package de.cathesso.adventofcode2022
 import java.io.File
 
 fun main(){
-    val rawInput = loadInputFromText("day_01_input.txt")
+    val rawInput = loadInputFromTextAndTurnToLongs("day_01_input.txt")
     val sortedCalories = groupCalories(rawInput)
     println("Elf with most calories: " + sortedCalories[0])
     println("Top three elves calories sum: " + sumUpTopCalories(3, sortedCalories))
 }
 
 
-fun loadInputFromText(textFile :String) :List<Long?> {
+fun loadInputFromTextAndTurnToLongs(textFile :String) :List<Long?> {
     //Load raw calories text
     val rawCaloriesList = File(ClassLoader.getSystemResource(textFile).file).readLines()
     //Convert strings to longs and empty lines to null
