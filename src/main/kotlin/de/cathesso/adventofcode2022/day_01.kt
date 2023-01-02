@@ -5,7 +5,7 @@ import java.io.File
 fun main(){
     val rawInput = loadInputFromTextAndTurnToLongs("day_01_input.txt")
     val sortedCalories = groupCalories(rawInput)
-    println("Elf with most calories: " + sortedCalories[0])
+    println("Elf with most calories: " + sortedCalories.first())
     println("Top three elves calories sum: " + sumUpTopCalories(3, sortedCalories))
 }
 
@@ -36,7 +36,7 @@ fun groupCalories(listOfAddedUpCalories :List<Long?>) :MutableList<Long>{
 
 fun sumUpTopCalories(amountOfTopElves :Int, groupedCalories :List<Long>) :Long{
     var addedCalories :Long = 0
-    for (i in 1..amountOfTopElves){
+    for (i in 1 .. amountOfTopElves){
         addedCalories += groupedCalories[i-1]
     }
     return addedCalories

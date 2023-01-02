@@ -1,14 +1,16 @@
 package de.cathesso.adventofcode2022
 
+enum class HandShapes { ROCK, PAPER, SCISSORS }
 fun main() {
     val rawGames = loadInputFromTextAndSaveAsList("day_02_input.txt")
-    var totalScore :Long = 0
+
+    var totalScore: Long = 0
     println(rawGames)
     println("Wrong calculated Games:")
     var gameNumber = 1
-    for (game in rawGames){
-        var thisMatch = matchCreator(game)
-        var matchPoints = totalPoints(thisMatch)
+    for (game in rawGames) {
+        val thisMatch = matchCreator(game)
+        val matchPoints = totalPoints(thisMatch)
         totalScore += matchPoints
         println("Game $gameNumber: $thisMatch --> $matchPoints Points")
         gameNumber++
@@ -18,9 +20,9 @@ fun main() {
     println("Corrected Games:")
     gameNumber = 1
     totalScore = 0
-    for (game in rawGames){
-        var thisMatch = correctMatchCreator(game)
-        var matchPoints = totalPoints(thisMatch)
+    for (game in rawGames) {
+        val thisMatch = correctMatchCreator(game)
+        val matchPoints = totalPoints(thisMatch)
         totalScore += matchPoints
         println("Game $gameNumber: $thisMatch --> $matchPoints Points")
         gameNumber++
@@ -52,6 +54,7 @@ fun matchCreator(rawMatch: String): Match {
 
     return Match(myHand, opponentHand, matchResult)
 }
+
 fun correctMatchCreator(rawMatch: String): Match {
     var myHand: String = ""
     var opponentHand: String = ""
@@ -102,17 +105,18 @@ fun matchEvaluator(myHand: String, opponentHand: String): String {
 }
 
 fun correctMatchEvaluator(matchResult: String, opponentHand: String): String {
-    when (matchResult){
+    when (matchResult) {
         "DRAW" -> return opponentHand
         "LOOSE" -> {
-            when (opponentHand){
+            when (opponentHand) {
                 "Rock" -> return "Scissors"
                 "Paper" -> return "Rock"
                 "Scissors" -> return "Paper"
             }
         }
+
         "WIN" -> {
-            when (opponentHand){
+            when (opponentHand) {
                 "Rock" -> return "Paper"
                 "Paper" -> return "Scissors"
                 "Scissors" -> return "Rock"
